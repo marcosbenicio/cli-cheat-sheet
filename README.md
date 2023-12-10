@@ -213,12 +213,23 @@ List all the remote repositories:
 git remote -v
 ```
 
-Apply your local commits on top of the remote branch's commits:
+Apply local commits on top of the remote branch's commits:
 
 ```bash
 git pull --rebase origin main
 ```
 
+Resets branch to the state of commit <commit-hash>, effectively discarding all the commits that came after that:
+
+```bash
+git reset --hard <commit-hash>
+```
+
+Create a new commit that undoes the changes by the specified commit <commit-hash>. This effectively exclude the commit from the branch without affecting the subsequent commits:
+
+```bash
+git revert <commit-hash>
+```
 ------
 # **Pipenv**
 
