@@ -65,12 +65,16 @@ netstat -tuln | grep <port-number >
 ```bash
 lsof -i -P -n | grep <port-number >
 ```
+or 
 
 ```bash
 sudo lsof -i :9696
 ```
 
-A cross-platform command-line utility that creates projects from cookiecutters (project templates):
+Create or edit the <file-name> file:
+
+touch <file-name>
+
 
 
 ------
