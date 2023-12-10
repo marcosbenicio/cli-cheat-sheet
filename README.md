@@ -213,6 +213,12 @@ List all the remote repositories:
 git remote -v
 ```
 
+Apply your local commits on top of the remote branch's commits:
+
+```bash
+git pull --rebase origin main
+```
+
 ------
 # **Pipenv**
 
