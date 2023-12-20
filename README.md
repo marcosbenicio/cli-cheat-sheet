@@ -5,6 +5,13 @@
     - [**SSH**](#ssh)
 - [**Line-Commands Tools**](#line-commands-tools)
     - [**Git/GitHub**](#gitgithub)
+        - [**Config and Init**](#config-and-init)
+        - [**Branch and Checkout**](#branch-and-checkout)
+        - [**Stage area and commit**](#stage-area-and-commit)
+        - [**Remote**](#remote)
+        - [**Push and Pull**](#push-and-pull)
+        - [**Merge and Rebase**](#merge-and-rebase)
+        - [**Large Files**](#large-files)
     - [**Pipenv**](#pipenv)
     - [**Docker**](#docker)
     - [**Kubernetes and Kind**](#kubernetes-and-kind)
@@ -149,6 +156,25 @@ htop
 
 # **Git/GitHub**
 
+## **config and init**
+
+List all the git configurations:
+
+```bash
+git config --list
+
+git config --global --list
+
+git config --local --list
+
+```
+
+Set the default branch name to main as in GitHub:
+
+```bash
+git config --global init.defaultBranch main
+```
+
 Initialize a git repository:
 
 ```bash
@@ -161,23 +187,61 @@ Establish a new remote repository that our local repository can interact with:
 git remote add origin <SSH_URL or HTTPS >
 ```
 
-List all the branches in the repository:
+Difference between the working directory and the staging area:
+
+```bash
+git diff
+```
+
+List of news files and modified files:
+
+```bash
+git status
+```
+
+## **branch and checkout**
+
+**git branch** is used for creating, listing, and deleting branches, while **git checkout** is used for switching between branches and also for creating a new branch if used with the -b flag.
+
+
+List all the branches in the repository with -a flag:
 
 ```bash
 git branch -a
 ```
-
-Create a new branch:
+or delete a branch with -d (-D to force deletion) flag:
 
 ```bash
-git branch <branch-name >
+git branch -d <branch-name>
 ```
 
-Switch to a branch:
+Create and immediately switch to a new branch:
+
+```bash
+git branch -b <new-branch-name >
+```
+or
+
+```bash
+git checkout <new-branch-name >
+```
+
+Switch to an existing branch:
 
 ```bash
 git checkout <branch-name >
 ```
+
+Rename a branch:
+
+```bash
+git branch -m <old-branch-name> <new-branch-name>
+```
+
+## **Stage area and commit**
+
+</center> <img src="git.png" alt="drawing" width="1000" /> </center>
+
 
 Add a file to the staging area:
 
@@ -185,42 +249,35 @@ Add a file to the staging area:
 git add <file-name >
 ```
 
-Commit changes to head (but not yet to the remote repository):
+Remove a file from the staging area before commit:
+
+```bash
+git reset <file-name >
+```
+
+Commit changes to head:
 
 ```bash
 git commit -m "Commit message"
 ```
 
-Replace the current working directory and staging area with the state of the tree at the given commit, use the following command:
+Stop tracking a file that was previously committed to the repository.  It's often used for files that should no longer be part of the repository (e.g., accidentally committed files, files that should be ignored).
 
 ```bash
-git reset --hard [commit-hash]
-
+git rm --cached <file-name>
 ```
 
-If we only want to reset the staging area and not affect the working directory
-This will unstage any changes since the specified commit, but leave the files in the working directory unchanged. 
+Or remove all files from the staging area.The -r flag is for recursive removal, and . indicates the current directory.
 
 ```bash
-git reset [commit-hash]
+git rm --cached -r .
 ```
 
-Switch a repository's remote URL to use SSH in GitHub:
+
+Change the commit message or add/untrack  files to last commit (only if not pushed and after staging/unstaging the files with `git add` / `git rm`):
 
 ```bash
-git remote set-url origin <SSH_URL>
-```
-
-List all the remote repositories:
-
-```bash
-git remote -v
-```
-
-Apply local commits on top of the remote branch's commits:
-
-```bash
-git pull --rebase origin main
+git commit --amend -m "New commit message"
 ```
 
 Resets branch to the state of commit <commit-hash>, effectively discarding all the commits that came after that:
@@ -234,6 +291,112 @@ Create a new commit that undoes the changes by the specified commit <commit-hash
 ```bash
 git revert <commit-hash>
 ```
+
+Show the commit history for the currently active branch:
+
+```bash
+git log
+```
+
+## **Push and Pull**
+
+Push the branch to remote repository:
+
+```bash
+git push origin <branch-name >
+```
+
+Pull changes from the remote repository to the local repository:
+
+```bash
+git pull origin <branch-name >
+```
+
+Apply local commits on top of the remote branch's commits:
+
+```bash
+git pull --rebase origin main
+```
+
+Fetch the changes from the remote repository to the local repository:
+
+```bash
+git fetch origin <branch-name >
+```
+
+## **Merge and Rebase**
+
+Merge the specified branch into the current branch:
+
+```bash
+git merge <branch-name >
+```
+
+Rebase the current HEAD onto the specified branch:
+
+```bash
+git rebase <branch-name >
+```
+
+Create a new commit that undoes all of the changes made in <commit-hash >, then apply it to the current branch:
+
+```bash
+git revert <commit-hash >
+```
+
+## **Remote**
+
+Replace the current working directory and staging area with the state of the tree at the given commit:
+
+```bash
+git reset --hard [commit-hash]
+
+```
+
+If we only want to reset the staging area and not affect the working directory. This will unstage any changes since the specified commit, but leave the files in the working directory unchanged. 
+
+```bash
+git reset [commit-hash]
+```
+
+Switch a repository's remote URL to use SSH in GitHub:
+
+```bash
+git remote set-url origin <SSH_URL >
+```
+
+List all the remote repositories:
+
+```bash
+git remote -v
+```
+
+## Large Files
+
+initializes Git LFS in repository:
+
+```bash
+git lfs install
+```
+
+Track a file with Git LFS. It adds entries to the `.gitattributes`.
+
+```bash
+git lfs track <file-name >
+```
+
+Untrack a file with Git LFS:
+
+```bash
+git lfs untrack <file-name >
+```
+
+List all the files tracked by Git LFS:
+
+```bash
+git lfs ls-files
+```
+
 ------
 # **Pipenv**
 
