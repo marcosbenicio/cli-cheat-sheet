@@ -88,10 +88,10 @@ touch <file-name>
 
 # **SSH**
 
-cluster access (Password: marcos0102)
+cluster access
    
 ```bash
-ssh -Y mbenicio@146.164.45.180 -p  20022
+ssh -Y name@146.164.45.180 -p port
 ```
 CHange password:
 
