@@ -2,6 +2,10 @@
 
 - [**Shell Commands**](#shell-commands)
     - [**Bash**](#bash)
+        - [**Simple commands**](#simple-commands)
+        - [**Special operators**](#special-operators)
+        - [**Advanced commands**](#advanced-commands)
+        - [**PATH**](#path)
     - [**SSH**](#ssh)
 - [**Line-Commands Tools**](#line-commands-tools)
     - [**Git/GitHub**](#gitgithub)
@@ -12,7 +16,7 @@
         - [**Push and Pull**](#push-and-pull)
         - [**Merge and Rebase**](#merge-and-rebase)
         - [**Large Files**](#large-files)
-    - [**Pipenv**](#pipenv)
+    - [**Pipenv and Pyenv**](#pipenv)
     - [**Docker**](#docker)
     - [**Kubernetes and Kind**](#kubernetes-and-kind)
     - [**Others**](#others)
@@ -23,7 +27,15 @@
 
 # Shell commands
 
+
 # **Bash**
+
+## **Simple commands**
+List the files and directories in the current directory. The `-l` flag is used to display the long format, and the `-h` flag is used to display the file size in human-readable format.
+
+```bash
+ls -lh
+```
 
 Copy the file to the destination repository:
 
@@ -54,6 +66,61 @@ Return the type of a program:
 type <program-name >
 ```
 
+Display a line of text/string that is passed as an argument. 
+
+```bash
+echo <text >
+```
+
+## **Special operators**
+
+The `>` operator is used to redirect the output of a command to a file. If the file already exists, it will be overwritten. If the file does not exist, it will be created.
+
+```bash
+echo "Hello, World!" > myfile.txt
+```
+
+The `>>` operator is used to redirect the output of a command to a file. If the file already exists, the output will be appended to the end of the file. If the file does not exist, it will be created.
+
+```bash
+echo "Hello, World!" >> myfile.txt
+```
+
+The `|` operator is used to redirect the output of a command to another command. It is called a pipe. The output of the first command is used as the input of the second command.
+
+```bash
+echo "Hello, World!" | wc
+```
+
+The `&&` operator is used to execute a second command after the first command has finished executing. The second command will only be executed if the first command was successful.
+
+```bash
+echo "Hello, World!" && echo "Hello, World!"
+```
+
+The `;` operator is used to execute a second command after the first command has finished executing. The second command will be executed regardless of whether the first command was successful.
+
+```bash
+echo "Hello, World!"; echo "Hello, World!"
+```
+
+The `&` operator is used to run a command in the background. The command will be executed in the background, and the shell prompt will return immediately.
+
+```bash
+sleep 10 &
+```
+
+The `*` operator is used to match zero or more characters. It is called a wildcard. It can be used to match any file or directory name.
+
+```bash
+ls *.txt
+```
+
+
+
+## **Advanced commands**
+
+
 List all the files installed by a program. The `dpkg` is the package management program that installs, removes, and provides information about `.deb` packages. The `grep` command-line searches through text and prints lines that match a pattern.
 
 ```bash
@@ -78,9 +145,29 @@ or
 sudo lsof -i :9696
 ```
 
-Create or edit the <file-name> file:
+Create the <file-name> file:
 
+```bash
 touch <file-name>
+```
+
+
+## **PATH**
+
+The `PATH` environment variable contains multiple paths, each separated by a colon (:). The order of the paths matters. When type a command, the shell looks through these paths in the order they're listed. Once it finds a matching executable, it stops searching. If a program isn't running as expected, it might be because a different version earlier in your `PATH` is being executed instead.
+
+
+Display the current value of the `PATH` environment variable:
+
+```bash
+echo $PATH
+```
+
+Add a new directory to the existing PATH environment variable:
+
+```bash 
+export PATH=$PATH:/path/to/directory
+```
 
 
 
@@ -88,10 +175,10 @@ touch <file-name>
 
 # **SSH**
 
-cluster access (Password: marcos0102)
+cluster access
    
 ```bash
-ssh -Y mbenicio@146.164.45.180 -p  20022
+ssh -Y name@146.164.45.180 -p port
 ```
 CHange password:
 
@@ -398,7 +485,7 @@ git lfs ls-files
 ```
 
 ------
-# **Pipenv**
+# **Pipenv and Pyenv**
 
 
 Install Pipenv to manage project dependencies.
@@ -406,12 +493,11 @@ Install Pipenv to manage project dependencies.
 ```bash
 pip install pipenv
 ```
-Install a specific package and add it to Pipfile.
+Install a specific package and add it to Pipfile. To install the packages from Pipfile, use only `pipenv install`.
 
 ```bash
 pipenv install <package-name >
 ```
-
 
 Uninstall a specific package and remove it from Pipfile.
 
@@ -448,6 +534,50 @@ Exit the virtual environment:
 ```bash
 exit
 ```
+
+pyenv is a tool for managing multiple versions of Python on the same machine. To install a python version:
+
+```bash
+pyenv install <python-version>
+```
+
+Updates the shim files for all Python executables known to pyenv (i.e., ~/.pyenv/versions/*/bin/*). Run this command after install a new version of Python.
+
+```bash
+pyenv rehash 
+```
+
+A list of all available Python versions can be obtained with:
+
+```bash
+pyenv install -l
+```
+
+List all the python versions installed by pyenv:
+
+```bash
+pyenv versions
+```
+
+Sets the specified Python version as the default for your entire user account. Any new shell session will use this version unless overridden by a local setting.
+
+```bash
+pyenv global <python-version>
+```
+
+Sets the specified Python version for the current directory (project). This version overrides the global setting when you're working in this directory.
+
+```bash
+pyenv local <python-version>
+```
+
+unistall a python version:
+
+```bash
+pyenv uninstall <python-version>
+```
+
+
 ------
 # **Docker**
 
