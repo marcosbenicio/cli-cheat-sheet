@@ -16,7 +16,7 @@
         - [**Push and Pull**](#push-and-pull)
         - [**Merge and Rebase**](#merge-and-rebase)
         - [**Large Files**](#large-files)
-    - [**Pipenv and Pyenv**](#pipenv)
+    - [**Pipenv and Pyenv**](#pipenv-and-pyenv)
     - [**Docker**](#docker)
     - [**Kubernetes and Kind**](#kubernetes-and-kind)
     - [**Others**](#others)
@@ -175,12 +175,67 @@ export PATH=$PATH:/path/to/directory
 
 # **SSH**
 
+Files in `~/.ssh` directory:
+
+- config : The SSH client configuration file. It contains settings for SSH, such as hostname aliases, specific identity files (private keys) to use for different hosts, user names, port numbers, and other preferences for SSH connections. This file is read by the SSH client to determine how to connect to a particular server and with what credentials.
+
+- .pub files: pThese are public SSH keys corresponding to their private counterparts (without the .pub extension). They are used in public-key cryptography to securely verify our identity. 
+
+
+
+Creates a new ssh key, using the provided email as a label with ed25519 algorithm. The `-t` flag specifies the type of key to create. 
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+
+
+Start the SSH agent using `eval`:
+
+```bash
+eval $(ssh-agent -s)
+```
+
+or using the following command to get the output and then export it:
+
+```bash
+ssh-agent
+    
+    OUTPUT
+
+
+export OUTPUT
+```
+
+
+Add the SSH private key to the SSH agent. This ensures the SSH agent is aware of the private key and will manage it, making it easier to establish connections without entering a passphrase every time.
+
+```bash
+ssh-add ~/.ssh/id_ed25519
+```
+
+Remove the SSH private key from the SSH agent:
+
+```bash
+ssh-add -d key_name
+```
+
+
+keys the SSH agent is currently holding 
+
+```bash
+ssh-add -l
+```
+
+
+
 cluster access
    
 ```bash
 ssh -Y name@146.164.45.180 -p port
 ```
-CHange password:
+Change password:
 
 ```bash
 passwd 
@@ -511,6 +566,12 @@ Activate the virtual environment associated with your project.
 pipenv bash
 ```
 
+Show the location of the virtual environment for the project:
+
+```bash
+pipenv --venv
+```
+
 Remove the virtual environment for the project.
 
 ```bash
@@ -527,6 +588,11 @@ Update a specific package to its latest version as specified in Pipfile.
 
 ```bash
 pipenv lock
+```
+Clearing the cache is useful to free up space or ensure that pipenv is using the most recent versions of packages without being influenced by cached data.
+
+```bash
+pipenv --clear
 ```
 
 Exit the virtual environment:
