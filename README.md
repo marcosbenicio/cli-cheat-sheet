@@ -448,11 +448,13 @@ Change the commit message or add/untrack  files to last commit (only if not push
 git commit --amend -m "New commit message"
 ```
 
-Resets branch to the state of commit <commit-hash>, effectively discarding all the commits that came after that:
+Resets the current branch to a specific commit (or to the latest commit of a remote branch like origin/main), discarding all subsequent commits and local changes. This is commonly used to align the branch precisely with a remote branch, erasing any local divergences.
 
 ```bash
 git reset --hard <commit-hash>
 ```
+
+
 
 Create a new commit that undoes the changes by the specified commit <commit-hash>. This effectively exclude the commit from the branch without affecting the subsequent commits:
 
@@ -615,11 +617,32 @@ Update a specific package to its latest version as specified in Pipfile.
 ```bash
 pipenv lock
 ```
+
 Clearing the cache is useful to free up space or ensure that pipenv is using the most recent versions of packages without being influenced by cached data.
 
 ```bash
 pipenv --clear
 ```
+
+check for security vulnerabilities in the installed packages:
+
+```bash
+pipenv check
+```
+
+
+Shows a graph of your installed dependencies, which can be helpful to see what's installed and how those packages are related
+
+```bash
+pipenv graph
+```
+
+Lists all packages installed in the virtual environment managed by pipenv
+
+```bash
+pipenv run pip list
+```
+
 
 Exit the virtual environment:
 
