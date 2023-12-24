@@ -31,6 +31,31 @@
 # **Bash**
 
 ## **Simple commands**
+
+`pwd` stands for "print working directory". 
+
+```bash
+pwd
+```
+
+Change the current working directory:
+
+```bash
+cd <directory-name>
+```
+
+Create a new directory:
+
+```bash
+mkdir <directory-name>
+```
+
+Create the <file-name> file:
+
+```bash
+touch <file-name>
+```
+
 List the files and directories in the current directory. The `-l` flag is used to display the long format, and the `-h` flag is used to display the file size in human-readable format.
 
 ```bash
@@ -46,7 +71,7 @@ cp /path/to/source/repo/file /path/to/destination/repo/
 Rename a file in a repository:
 
 ```bash
-mv old-file-name <new-file-name >
+mv old-file-name <new-file-name>
 ```
 
 Remove all files and subdirectories in the current directory:
@@ -55,21 +80,28 @@ Remove all files and subdirectories in the current directory:
 rm -rf *
 ```
 
+`cat` stands for "concatenate". Display the contents of a file.
+
+```bash
+cat <file-name>
+```
+
+
 Find the location of a program:
 
 ```bash
-which <program-name >
+which <program-name>
 ```
 Return the type of a program:
 
 ```bash
-type <program-name >
+type <program-name>
 ```
 
 Display a line of text/string that is passed as an argument. 
 
 ```bash
-echo <text >
+echo <text>
 ```
 
 ## **Special operators**
@@ -77,13 +109,13 @@ echo <text >
 The `>` operator is used to redirect the output of a command to a file. If the file already exists, it will be overwritten. If the file does not exist, it will be created.
 
 ```bash
-echo "Hello, World!" > myfile.txt
+echo "Hello, World!"> myfile.txt
 ```
 
 The `>>` operator is used to redirect the output of a command to a file. If the file already exists, the output will be appended to the end of the file. If the file does not exist, it will be created.
 
 ```bash
-echo "Hello, World!" >> myfile.txt
+echo "Hello, World!">> myfile.txt
 ```
 
 The `|` operator is used to redirect the output of a command to another command. It is called a pipe. The output of the first command is used as the input of the second command.
@@ -124,31 +156,25 @@ ls *.txt
 List all the files installed by a program. The `dpkg` is the package management program that installs, removes, and provides information about `.deb` packages. The `grep` command-line searches through text and prints lines that match a pattern.
 
 ```bash
-dpkg -L <program-name > | grep bin/
+dpkg -L <program-name> | grep bin/
 ```
 
 
 netstat is a command-line utility that displays network connections for the Transmission Control Protocol (both incoming and outgoing), routing tables, and a number of network interface (network interface controller or software-defined network interface) and network protocol statistics. The `t` flag is used to display TCP connections, the `u` flag is used to display UDP connections, the `l` flag is used to display only listening sockets, and the `n` flag is used to display numerical addresses instead of trying to determine symbolic host, port or user names. `grep <port-number>` is used to filter the displayed connections by a specific port number.
 
 ```bash
-netstat -tuln | grep <port-number >
+netstat -tuln | grep <port-number>
 ```
 
 `lsof` stands for "list open files". Display information about files opened by processes. The `i` flag is used to display only internet connections, the `p` flag is used to display the PID and name of the program to which each socket belongs, and the `n` flag is used to display numerical addresses instead of trying to determine symbolic host, port or user names.
 
 ```bash
-lsof -i -P -n | grep <port-number >
+lsof -i -P -n | grep <port-number>
 ```
 or 
 
 ```bash
 sudo lsof -i :9696
-```
-
-Create the <file-name> file:
-
-```bash
-touch <file-name>
 ```
 
 
@@ -326,7 +352,7 @@ git init
 Establish a new remote repository that our local repository can interact with:
 
 ```bash
-git remote add origin <SSH_URL or HTTPS >
+git remote add origin <SSH_URL or HTTPS>
 ```
 
 Difference between the working directory and the staging area:
@@ -360,18 +386,18 @@ git branch -d <branch-name>
 Create and immediately switch to a new branch:
 
 ```bash
-git branch -b <new-branch-name >
+git branch -b <new-branch-name>
 ```
 or
 
 ```bash
-git checkout <new-branch-name >
+git checkout <new-branch-name>
 ```
 
 Switch to an existing branch:
 
 ```bash
-git checkout <branch-name >
+git checkout <branch-name>
 ```
 
 Rename a branch:
@@ -388,13 +414,13 @@ git branch -m <old-branch-name> <new-branch-name>
 Add a file to the staging area:
 
 ```bash
-git add <file-name >
+git add <file-name>
 ```
 
 Remove a file from the staging area before commit:
 
 ```bash
-git reset <file-name >
+git reset <file-name>
 ```
 
 Commit changes to head:
@@ -445,13 +471,13 @@ git log
 Push the branch to remote repository:
 
 ```bash
-git push origin <branch-name >
+git push origin <branch-name>
 ```
 
 Pull changes from the remote repository to the local repository:
 
 ```bash
-git pull origin <branch-name >
+git pull origin <branch-name>
 ```
 
 Apply local commits on top of the remote branch's commits:
@@ -463,7 +489,7 @@ git pull --rebase origin main
 Fetch the changes from the remote repository to the local repository:
 
 ```bash
-git fetch origin <branch-name >
+git fetch origin <branch-name>
 ```
 
 ## **Merge and Rebase**
@@ -471,19 +497,19 @@ git fetch origin <branch-name >
 Merge the specified branch into the current branch:
 
 ```bash
-git merge <branch-name >
+git merge <branch-name>
 ```
 
 Rebase the current HEAD onto the specified branch:
 
 ```bash
-git rebase <branch-name >
+git rebase <branch-name>
 ```
 
-Create a new commit that undoes all of the changes made in <commit-hash >, then apply it to the current branch:
+Create a new commit that undoes all of the changes made in <commit-hash>, then apply it to the current branch:
 
 ```bash
-git revert <commit-hash >
+git revert <commit-hash>
 ```
 
 ## **Remote**
@@ -504,7 +530,7 @@ git reset [commit-hash]
 Switch a repository's remote URL to use SSH in GitHub:
 
 ```bash
-git remote set-url origin <SSH_URL >
+git remote set-url origin <SSH_URL>
 ```
 
 List all the remote repositories:
@@ -524,13 +550,13 @@ git lfs install
 Track a file with Git LFS. It adds entries to the `.gitattributes`.
 
 ```bash
-git lfs track <file-name >
+git lfs track <file-name>
 ```
 
 Untrack a file with Git LFS:
 
 ```bash
-git lfs untrack <file-name >
+git lfs untrack <file-name>
 ```
 
 List all the files tracked by Git LFS:
@@ -551,13 +577,13 @@ pip install pipenv
 Install a specific package and add it to Pipfile. To install the packages from Pipfile, use only `pipenv install`.
 
 ```bash
-pipenv install <package-name >
+pipenv install <package-name>
 ```
 
 Uninstall a specific package and remove it from Pipfile.
 
 ```bash
-pipenv uninstall <package-name >
+pipenv uninstall <package-name>
 ```
 
 Activate the virtual environment associated with your project.
@@ -651,7 +677,7 @@ pyenv uninstall <python-version>
 Download docker image:
 
 ```bash
-sudo docker pull <docker-image >
+sudo docker pull <docker-image>
 ```
 
 List of docker images:
@@ -663,7 +689,7 @@ sudo docker images
 Run docker image. The flags `-it`, it allows to interact with a command line interface within the Docker container.  the `--rm` flag automatically removes the container when it exits and `.` specifies the build context to the current directory.
 
 ```bash
-sudo docker run -it --rm -p 9696:9696 <docker-image >:tag .
+sudo docker run -it --rm -p 9696:9696 <docker-image>:tag .
 ```
 
 
@@ -677,19 +703,19 @@ sudo docker ps -a
 Inspect a docker object:
 
 ```bash
-sudo docker inspect <image_or_container_id >
+sudo docker inspect <image_or_container_id>
 ```
 
 Remove a docker container forcefully:
 
 ```bash
-sudo docker rm -f <container_id >
+sudo docker rm -f <container_id>
 ```
 
 Remove a docker image forcefully:
 
 ```bash
-sudo docker rmi -f <image_id >
+sudo docker rmi -f <image_id>
 ```
 
 Remove all stopped containers, not tagged images, and unused networks and volumes.
@@ -722,13 +748,13 @@ kind load docker-image
 Apply configuration to our cluster from a YAML file. The `-f` flag specifies the filename. 
 
 ```bash
-kubectl apply -f <filename >.yaml
+kubectl apply -f <filename>.yaml
 ```
 
 Delete the Kubernetes resources defined in a given YAML file from our cluster:
 
 ```bash
-sudo kubectl delete -f <filename >.yaml
+sudo kubectl delete -f <filename>.yaml
 ```
 
 List all deployments:
@@ -740,7 +766,7 @@ kubectl get deployments
 Delete a deployment:
 
 ```bash
-kubectl delete deployment <deployment-name >
+kubectl delete deployment <deployment-name>
 ```
 
 List all pods:
@@ -757,13 +783,13 @@ kubectl get services
 
 Delete a service:
 ```bash
-kubectl delete service <service-name >
+kubectl delete service <service-name>
 ```
 
 Create the HPA (Horizontal Pod Autoscaler) for the deployment:
 
 ```bash
-kubectl autoscale deployment <label-name-pod > --name <hpa-name > --cpu-percent=20 --min=1 --max=3
+kubectl autoscale deployment <label-name-pod> --name <hpa-name> --cpu-percent=20 --min=1 --max=3
 ```
 
 List all HPA:
@@ -775,13 +801,13 @@ kubectl get hpa
 Show the details of a HPA:
 
 ```bash
-kubectl describe hpa <hpa-name >
+kubectl describe hpa <hpa-name>
 ```
 
 Delete HPA:
 
 ```bash
-kubectl delete hpa <hpa-name >
+kubectl delete hpa <hpa-name>
 ```
 
 Show the logs of the Metrics Server. Used to check the operational logs of the Metrics Server to diagnose issues, monitor its activities, or understand its interactions with other components in the cluster.
@@ -835,7 +861,7 @@ bundle exec jekyll serve
 Convert jupyter notebook to latex and then to pdf:
 
 ```bash
-jupyter nbconvert --to latex <notebook-name >.ipynb
+jupyter nbconvert --to latex <notebook-name>.ipynb
 ```
 
 Convert latex to pdf:
