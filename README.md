@@ -697,6 +697,12 @@ pyenv uninstall <python-version>
 # **Docker**
 
 
+Build docker image. The flag -t stand for "tag", and allow give a name to the image.  The dot (.) means the current directory, and tells Docker to use the files in the current directory for build the image.
+
+```bash
+docker build -t <image-name> .
+```
+
 Download docker image:
 
 ```bash
@@ -747,6 +753,25 @@ Remove all stopped containers, not tagged images, and unused networks and volume
 docker system prune -a
 ```
 ------
+
+Login to docker hub:
+
+```bash
+sudo docker login
+```
+
+Change tag name to match the tag from Docker Hub:
+
+```bash
+docker tag <local-image-name>:<local-tag> <docker-hub-username>/<repository-name>:<desired-tag>
+```
+
+Push docker image to docker hub. Need to tag the local image with the exact name of the repository on Docker Hub:
+
+```bash
+docker push usarname/image_name:tag
+```
+
 # **Kubernetes and Kind**
 
 
