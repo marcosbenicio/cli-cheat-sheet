@@ -104,6 +104,12 @@ Display a line of text/string that is passed as an argument.
 echo <text>
 ```
 
+It searches the given file for lines containing a match to the given strings or words.
+
+```bash
+grep "word-to-search" file.txt  
+```
+
 ## **Special operators**
 
 The `>` operator is used to redirect the output of a command to a file. If the file already exists, it will be overwritten. If the file does not exist, it will be created.
@@ -122,6 +128,12 @@ The `|` operator is used to redirect the output of a command to another command.
 
 ```bash
 echo "Hello, World!" | wc
+```
+
+Another way to search text is using the pipe operator with cat. The pipe operator is used to redirect the output of a command to another command.
+
+```bash
+cat file.txt | grep "word-to-search"
 ```
 
 The `&&` operator is used to execute a second command after the first command has finished executing. The second command will only be executed if the first command was successful.
@@ -177,6 +189,25 @@ or
 sudo lsof -i :9696
 ```
 
+chmod is a command This is the command used to change the file mode bits, which define the permissions of a file or directory. The `+x` flag is used to add executable permissions to a file.
+
+```bash
+chmod +x <file-name>
+```
+After this command is executed, we can run the script <file-name> directly from the command line like this: `./<file-name>.sh` .
+
+
+Output of `<command>` into `awk`, which then prints the first field of each line. This is useful for extracting specific columns from a command's output, such as the process ID of a running program. The `NR` is a built-in variable in awk that contains the current line number. The `>1` is used to skip the first line of the output. We could change 1 to any number to skip the first n lines or print the n column.
+
+```bash
+<command> | awk 'NR>1{print $1}'
+```
+
+Converts input from standard input into arguments to a command. If we have a column from awk, then this would be transformed into a list of arguments that would be passed to the command.
+
+```bash
+<command> | xargs <command>
+```
 
 ## **PATH**
 
@@ -715,12 +746,11 @@ List of docker images:
 sudo docker images
 ```
 
-Run docker image. The flags `-it`, it allows to interact with a command line interface within the Docker container.  the `--rm` flag automatically removes the container when it exits and `.` specifies the build context to the current directory.
+Run docker image. The flags `-it`, it allows to interact with a command line interface within the Docker container. The -p flag expose the port from the container to the host and the  `.` specifies the build context to the current directory.
 
 ```bash
-sudo docker run -it --rm -p 9696:9696 <docker-image>:tag .
+sudo docker run -it -p 9696:9696 <docker-image>:tag .
 ```
-
 
 List all containers (running and stopped). `ps` is used to list running process on unix and
 `-a` stands for 'all' process.
@@ -733,6 +763,12 @@ Inspect a docker object:
 
 ```bash
 sudo docker inspect <image_or_container_id>
+```
+
+stop a docker container:
+
+```bash
+sudo docker stop <container_id>
 ```
 
 Remove a docker container forcefully:
@@ -770,6 +806,12 @@ Push docker image to docker hub. Need to tag the local image with the exact name
 
 ```bash
 docker push usarname/image_name:tag
+```
+
+Remove all docker containers'':
+
+```bash
+sudo docker ps -a | awk 'NR>1{print $1}' | xargs sudo docker rm -f
 ```
 
 # **Kubernetes and Kind**
