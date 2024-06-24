@@ -5,6 +5,7 @@
         - [**Simple commands**](#simple-commands)
         - [**Special operators**](#special-operators)
         - [**Advanced commands**](#advanced-commands)
+        - [**Data manipulation bash commands for CSV files**](#data-manipulation-bash-commands-for-csv-files)
         - [**PATH**](#path)
     - [**SSH**](#ssh)
 - [**Line-Commands Tools**](#line-commands-tools)
@@ -160,8 +161,6 @@ The `*` operator is used to match zero or more characters. It is called a wildca
 ls *.txt
 ```
 
-
-
 ## **Advanced commands**
 
 
@@ -209,6 +208,26 @@ Converts input from standard input into arguments to a command. If we have a col
 <command> | xargs <command>
 ```
 
+Used to find and display information about processes related to program. `ps` is used to display information about active processes, `a` Show processes for all users, `u` display the process's user/owner and `x` Also show processes not attached to a terminal.
+
+```bash
+ps aux | grep <program-name>
+```
+
+## Data manipulation bash commands for CSV files
+
+count the number of lines in the file.
+    
+```bash
+wc -l <file-name>
+```
+
+Display the first 10 lines of a file:
+
+```bash
+head -n 10 <file-name>
+```
+
 ## **PATH**
 
 The `PATH` environment variable contains multiple paths, each separated by a colon (:). The order of the paths matters. When type a command, the shell looks through these paths in the order they're listed. Once it finds a matching executable, it stops searching. If a program isn't running as expected, it might be because a different version earlier in your `PATH` is being executed instead.
@@ -246,8 +265,6 @@ Creates a new ssh key, using the provided email as a label with ed25519 algorith
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
-
-
 Start the SSH agent using `eval`:
 
 ```bash
@@ -284,8 +301,6 @@ keys the SSH agent is currently holding
 ```bash
 ssh-add -l
 ```
-
-
 
 cluster access
    
