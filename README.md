@@ -18,6 +18,7 @@
         - [**Merge and Rebase**](#merge-and-rebase)
         - [**Large Files**](#large-files)
     - [**Pipenv and Pyenv**](#pipenv-and-pyenv)
+    - [**Conda**](#conda)
     - [**Docker**](#docker)
     - [**Kubernetes and Kind**](#kubernetes-and-kind)
     - [**Others**](#others)
@@ -738,6 +739,55 @@ unistall a python version:
 pyenv uninstall <python-version>
 ```
 
+# **Conda** 
+
+Create a new environment with a specific name (e.g., myenv) and Python version if needed:
+
+```bash
+conda create --name myenv python=3.8
+```
+
+Activate the environment:
+
+```bash
+conda activate myenv
+```
+
+Install the necessary packages
+
+
+```bash
+conda install <package-names>
+```
+
+Deactivate the environment when you're done working in it:
+```bash
+conda deactivate
+```
+To list all your environments, you can use:
+
+```bash
+conda env list
+```
+
+To remove an environment, use:
+
+```bash
+conda remove --name myenv --all
+```
+
+Create the environment from the `environment.yml` file:
+
+```bash
+conda env create -f environment.yml
+```
+
+To update the environment if you modify the environment.yml file later on, run:
+
+```bash
+conda env update --file environment.yml --prune
+```
+The `--prune` option removes any dependencies that are no longer required.
 
 ------
 # **Docker**
