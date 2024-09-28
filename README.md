@@ -70,11 +70,19 @@ Copy the file to the destination repository:
 cp /path/to/source/repo/file /path/to/destination/repo/
 ```
 
-Rename a file in a repository:
+Rename a file or folder:
 
 ```bash
-mv old-file-name <new-file-name>
+mv <old-file-name> <new-file-name>
 ```
+
+or move a repository or file to another location:
+
+```bash
+mv <location-folder-path>* <destination-folder-path>
+```
+To move only the contents inside of a folder, we can use the wildcard (*) to matches all the files and directories inside the folder.
+
 
 Remove all files and subdirectories in the current directory:
 
